@@ -1,0 +1,79 @@
+.navbar {
+    // background: $brand__color !important;
+    background: linear-gradient(
+      0.25turn, #3f87a6, #ebf8e1, #f69d3c
+    );
+  
+    a {
+      font-size: 14px !important;
+    }
+    .navbar-brand {
+      @include displayCenter(center, center);
+      // img {
+      //   width: 40px;
+      //   height: 40px;
+      //   margin-right: 5px;
+      //   // @include image(contain);
+      // }
+      color: #ffffff !important;
+      font-weight: bold;
+      font-size: 20px !important;
+      text-align: center
+
+    }
+    .nav__ {
+      width: 100%;
+      @include displayCenter(center, space-between);
+
+      .navbar__left {
+        @include displayCenter(center, right);
+        margin-left: 600px;
+        float: right;
+        a {
+          padding: 0 20px !important;
+          color: rgba(255, 255, 255, 0.664);
+          font-weight: bold;
+        }
+        .active {
+          color: rgb(255, 255, 255) !important;
+        }
+      }
+    
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .navbar {
+      background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
+  
+      a,
+      .option__wrapper {
+        margin: 10px 0 !important;
+      }
+      .navbar-toggler-icon {
+        font-size: 14px;
+      }
+  
+      .nav__ {
+        align-items: flex-end;
+        .active {
+          &::after {
+            all: initial;
+          }
+        }
+        .navbar__left {
+          margin: 0 !important;
+          flex-direction: column;
+          align-items: flex-end !important;
+        }
+        .navbar__right {
+          flex-direction: column;
+          align-items: flex-end !important;
+          .option__wrapper {
+            padding: 0 15px !important;
+          }
+        }
+      }
+    }
+  }
+
