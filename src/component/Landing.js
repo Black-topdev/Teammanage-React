@@ -4,16 +4,18 @@ import { Image } from 'react-bootstrap'
 import background from '../assets/images/background.jpg'
 
 const Landing = () => {
-    return (
+return (
+    <>
         <div>
-            <Image
-                src={background}
-                // className='d-inline-block align-top me-2'
-                // alt='Credit Capital'
-                height="1000px"
-                width="1000px"
-            />
+            <div className="f1-container">
+                <p>I am black</p>
+                <Image 
+                    src = {background}
+                    className="image"
+                />
+            </div>
         </div>
+    </>
     )
 
 }
