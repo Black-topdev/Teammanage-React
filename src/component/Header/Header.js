@@ -33,7 +33,7 @@ const Header = () => {
                                 <Nav.Link>Sign Up</Nav.Link>
                                 </LinkContainer>
                                 <LinkContainer to='/post'>
-                                <Nav.Link>Post a Project</Nav.Link>
+                                <Nav.Link style="color:red">Post a Project</Nav.Link>
                                 </LinkContainer>
                             </div>
                         </Nav>
