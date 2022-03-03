@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState } from 'react'
 
 
 import github from "../../assets/images/github.svg"
@@ -6,6 +7,11 @@ import google from "../../assets/images/google.svg"
 
 
 const Signup = () => {
+    const [username, setusername] = useState('');
+
+    const handleusernamechange = (e) => {
+      setusername(e.target.value);
+    }
     return (
         <>
           <div className="container mx-auto px-4 h-full">
@@ -46,12 +52,14 @@ const Signup = () => {
                           className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                           htmlFor="grid-password"
                         >
-                          Name
                         </label>
                         <input
                           type="email"
                           className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                          placeholder="Name"
+                          placeholder="Username"
+                          name="username"
+                          value={ username } 
+                          onChange = {handleusernamechange}
                         />
                       </div>
     
@@ -60,7 +68,6 @@ const Signup = () => {
                           className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                           htmlFor="grid-password"
                         >
-                          Email
                         </label>
                         <input
                           type="email"
@@ -74,7 +81,6 @@ const Signup = () => {
                           className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                           htmlFor="grid-password"
                         >
-                          Password
                         </label>
                         <input
                           type="password"
