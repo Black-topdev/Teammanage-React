@@ -2,16 +2,41 @@ import React from 'react'
 import { useState } from 'react'
 
 
+
 import github from "../../assets/images/github.svg"
 import google from "../../assets/images/google.svg"
 
+const axios = require('axios');
 
 const Signup = () => {
     const [username, setusername] = useState('');
+    const [email, setemail] = useState('');
+    const [password, setpassword] = useState('');
+
 
     const handleusernamechange = (e) => {
       setusername(e.target.value);
     }
+    const handleemailchange = (e) => {
+      setemail(e.target.value);
+    }
+    const handlepasswordchange = (e) => {
+      setpassword(e.target.value);
+    }
+    const dataregister = () => {
+      axios.post('http://localhost:2000/register', {
+        username: username,
+        password: password,
+        email : email
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
+
     return (
         <>
           <div className="container mx-auto px-4 h-full">
@@ -73,6 +98,9 @@ const Signup = () => {
                           type="email"
                           className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                           placeholder="Email"
+                          name="email"
+                          value={ email } 
+                          onChange = {handleemailchange}
                         />
                       </div>
     
@@ -86,6 +114,9 @@ const Signup = () => {
                           type="password"
                           className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                           placeholder="Password"
+                          name="password"
+                          value={ password } 
+                          onChange = {handlepasswordchange}
                         />
                       </div>
     
@@ -113,6 +144,7 @@ const Signup = () => {
                         <button
                           className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                           type="button"
+                          onClick={(e) => dataregister()}
                         >
                           Create Account
                         </button>

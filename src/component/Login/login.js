@@ -1,13 +1,36 @@
 import React from 'react'
+import { useState } from 'react';
 import { Link } from '@material-ui/core';
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 import github from "../../assets/images/github.svg"
 import google from "../../assets/images/google.svg"
 
-
+const axios = require('axios');
 const Login = () => {
 
+  const [username, setusername] = useState('');
+  const [password, setpassword] = useState('');
+
+
+  const handleusernamechange = (e) => {
+    setusername(e.target.value);
+  }
+  const handlepasswordchange = (e) => {
+    setpassword(e.target.value);
+  }
+  const login = () => {
+    axios.post('http://localhost:2000/login', {
+      password: password,
+      username : username
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
     return (    
         <>
         <div className="container mx-auto px-4 h-full">
@@ -48,12 +71,15 @@ const Login = () => {
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
                       >
-                        Email
+                        Username
                       </label>
                       <input
                         type="email"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        placeholder="Email"
+                        placeholder="username"
+                        name="username"
+                        value={ username } 
+                        onChange = {handleusernamechange}
                       />
                     </div>
   
@@ -68,6 +94,9 @@ const Login = () => {
                         type="password"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="Password"
+                        name="password"
+                        value={ password } 
+                        onChange = {handlepasswordchange}
                       />
                     </div>
                     <div>
@@ -87,6 +116,7 @@ const Login = () => {
                       <button
                         className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                         type="button"
+                        onClick={(e) => login() }
                       >
                         Sign In
                       </button>
